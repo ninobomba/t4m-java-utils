@@ -1,0 +1,23 @@
+package io.github.ninobomba.utils.java.unit.json;
+
+import io.github.ninobomba.utils.java.json.JsonUtils;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+class JsonUtilsTest {
+
+	@Test
+	void isValidJsonTest ( ) {
+		var isValidJson = JsonUtils.isValidJson ( "{}" );
+		assert ( isValidJson );
+	}
+
+	@Test
+	void formatTest ( ) {
+		var prettyJson = JsonUtils.format ( "{\"phone\":\"4158149716\",\"mobile\":\"4425626535\"}" );
+		assertNotNull ( prettyJson );
+		System.out.println ( prettyJson );
+	}
+
+}
