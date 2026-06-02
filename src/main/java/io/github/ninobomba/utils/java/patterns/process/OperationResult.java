@@ -17,6 +17,9 @@ public sealed interface OperationResult < T >
 	static < T > OperationResult < T > success ( T value ) {
 		return new Success <> ( value );
 	}
+	static < T > OperationResult < T > success (  ) {
+		return new Success <T> ( null );
+	}
 
 	static < T > OperationResult < T > failure ( T value ) {
 		return new Failure <> ( value );
