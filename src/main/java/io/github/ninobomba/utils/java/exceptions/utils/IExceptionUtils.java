@@ -14,7 +14,9 @@ import java.util.stream.Collectors;
 /**
  * The ExceptionUtils interface provides utility methods for working with exceptions.
  */
+
 public interface IExceptionUtils {
+
     ObjectMapper OBJECT_MAPPER = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .enable(SerializationFeature.INDENT_OUTPUT);
@@ -152,4 +154,27 @@ public interface IExceptionUtils {
 
         return original;
     }
+
+    static String format(String parameter, RuntimeException exception) {
+        Throwable rootCause = getRootCause(exception);
+        var response = String.format(
+                "%nlogFailure() - Failure for parameter: %s.%nException: %s.%nMessage: %s.%nRoot cause: %s.%nRoot cause message: %s.%nStack trace: %s",
+                parameter,
+                exception.getClass().getName(),
+                exception.getMessage(),
+                rootCause.getClass().getName(),
+                rootCause.getMessage(),
+                convertToString(exception)
+        );
+        return "\n" + response + "\n";
+    }
+
+    static Throwable getRootCause(Throwable throwable) {
+        Throwable result = throwable;
+        while (result.getCause() != null && result.getCause() != result) {
+            result = result.getCause();
+        }
+        return result;
+    }
+
 }

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Check on the pom.xml and here
 ARTIFACT_ID="t4m-java-utils"
 RELEASE_VERSION=$(grep -oPm1 "(?<=<version>)[^<]+" pom.xml | head -1)
