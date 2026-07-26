@@ -155,7 +155,7 @@ public interface IExceptionUtils {
         return original;
     }
 
-    static String format(String parameter, RuntimeException exception) {
+    static String formatWithStacktrace(String parameter, RuntimeException exception) {
         Throwable rootCause = getRootCause(exception);
         var response = String.format(
                 "%nlogFailure() - Failure for parameter: %s.%nException: %s.%nMessage: %s.%nRoot cause: %s.%nRoot cause message: %s.%nStack trace: %s",
@@ -168,6 +168,20 @@ public interface IExceptionUtils {
         );
         return "\n" + response + "\n";
     }
+
+    static String format(String parameter, RuntimeException exception) {
+        Throwable rootCause = getRootCause(exception);
+        var response = String.format(
+                "%nlogFailure() - Failure for parameter: %s.%nException: %s.%nMessage: %s.%nRoot cause: %s.%nRoot cause message: %s",
+                parameter,
+                exception.getClass().getName(),
+                exception.getMessage(),
+                rootCause.getClass().getName(),
+                rootCause.getMessage()
+        );
+        return "\n" + response + "\n";
+    }
+
 
     static Throwable getRootCause(Throwable throwable) {
         Throwable result = throwable;
