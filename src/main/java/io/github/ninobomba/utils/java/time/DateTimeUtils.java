@@ -18,21 +18,23 @@ public interface DateTimeUtils {
 	 * @return a string representing the name derived from the current timestamp
 	 */
 	static String getNameByActualTimestamp ( ) {
+		LocalDateTime now = LocalDateTime.now ( );
 		return ""
-				.concat ( DateTimeFormatter.ofPattern ( "yyyy-MM-dd-HH" ).format ( LocalDateTime.now ( ) ) )
+				.concat ( DateTimeFormatter.ofPattern ( "yyyy-MM-dd-HH" ).format ( now ) )
 				.concat ( "-" )
-				.concat ( getMatchingMinuteIds ( ) );
+				.concat ( getMatchingMinuteIds ( now ) );
 	}
 	
 	/**
-	 * Returns a string representing the minute identifier for the current timestamp.
+	 * Returns a string representing the minute identifier for the given timestamp.
 	 * The minute identifier is a single character 'A' or 'B', which represents whether
-	 * the minute of the current timestamp is less than or equal to 30 (A) or greater than 30 (B).
+	 * the minute of the timestamp is less than or equal to 30 (A) or greater than 30 (B).
 	 *
-	 * @return a string representing the minute identifier ('A' or 'B') for the current timestamp
+	 * @param ldt the timestamp to evaluate
+	 * @return a string representing the minute identifier ('A' or 'B') for the given timestamp
 	 */
-	private static String getMatchingMinuteIds ( ) {
-		return LocalDateTime.now ( ).getMinute ( ) <= 30 ? "A" : "B";
+	private static String getMatchingMinuteIds ( LocalDateTime ldt ) {
+		return ldt.getMinute ( ) <= 30 ? "A" : "B";
 	}
 	
 }

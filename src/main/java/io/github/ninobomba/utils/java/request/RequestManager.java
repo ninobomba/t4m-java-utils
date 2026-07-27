@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public final class RequestManager implements Runnable {
 
-	private static RequestManager instance;
+	private static volatile RequestManager instance;
 
 	private static final int MAX_EVENTS_TAKEN_FROM_QUEUE = 1000;
 
@@ -56,7 +56,13 @@ public final class RequestManager implements Runnable {
 	 * @return The singleton instance of RequestManager.
 	 */
 	public static RequestManager getInstance ( ) {
-		if ( Objects.isNull ( instance ) ) instance = new RequestManager ( );
+		if ( Objects.isNull ( instance ) ) {
+			synchronized ( RequestManager.class ) {
+				if ( Objects.isNull ( instance ) ) {
+					instance = new RequestManager ( );
+				}
+			}
+		}
 		return instance;
 	}
 
@@ -133,7 +139,7 @@ public final class RequestManager implements Runnable {
 		while ( ! requestQueue.isEmpty ( ) ) {
 			log.debug ( "RequestManager::run() _: Request manager check queue tts: {} ms", sleepTime );
 			checkOnQueue ( );
-			TimeUnit.SECONDS.sleep ( sleepTime );
+			TimeUnit.MILLISECONDS.sleep ( sleepTime );
 		}
 	}
 

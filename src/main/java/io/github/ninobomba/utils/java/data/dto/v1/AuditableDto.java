@@ -25,6 +25,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
+@Deprecated ( forRemoval = false )
 public abstract class AuditableDto {
 
 	private String createdBy;

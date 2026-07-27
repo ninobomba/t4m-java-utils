@@ -1,6 +1,7 @@
 package io.github.ninobomba.utils.java.text;
 
 import java.util.Optional;
+import java.util.regex.Matcher;
 
 /**
  * The IParameterConcatenate interface provides a method for formatting a processing message by replacing placeholders
@@ -18,7 +19,7 @@ public interface IParameterConcatenation {
 	static String format ( String processingMessage, Object... parameters ) {
 		Object[] OBJECT_EMPTY_ARRAY = new Object[] { };
 		for ( Object parameter : Optional.ofNullable ( parameters ).orElse ( OBJECT_EMPTY_ARRAY ) )
-			processingMessage = processingMessage.replaceFirst ( "\\{}", String.valueOf ( parameter ).replaceAll ( "[^\\dA-Za-z ]", "\\\\$0" ) );
+			processingMessage = processingMessage.replaceFirst ( "\\{}", Matcher.quoteReplacement ( String.valueOf ( parameter ) ) );
 		return processingMessage;
 	}
 	

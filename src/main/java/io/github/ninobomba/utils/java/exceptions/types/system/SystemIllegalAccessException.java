@@ -2,7 +2,6 @@ package io.github.ninobomba.utils.java.exceptions.types.system;
 
 import lombok.EqualsAndHashCode;
 
-@Deprecated ( forRemoval = true )
 /**
  * The SystemIllegalAccessException is a subclass of RuntimeException and represents an exception
  * that is thrown when there is unauthorized access to a system.

@@ -9,31 +9,24 @@ public enum IdGenerator {
 
 	INSTANCE;
 
-	private IdGeneratorConcurrentLinkedQueueSupport idGeneratorConcurrentLinkedQueueSupport;
-	private IdGeneratorHashSetSupport idGeneratorHashSetSupport;
-	private IdGeneratorSnowFlakeSupport idGeneratorSnowFlakeSupport;
-	private IdGeneratorLUUIDSupport idGeneratorLUUIDSupport;
+	private final IdGeneratorConcurrentLinkedQueueSupport idGeneratorConcurrentLinkedQueueSupport = IdGeneratorConcurrentLinkedQueueSupport.getINSTANCE ( );
+	private final IdGeneratorHashSetSupport idGeneratorHashSetSupport = IdGeneratorHashSetSupport.getINSTANCE ( );
+	private final IdGeneratorSnowFlakeSupport idGeneratorSnowFlakeSupport = IdGeneratorSnowFlakeSupport.getINSTANCE ( );
+	private final IdGeneratorLUUIDSupport idGeneratorLUUIDSupport = IdGeneratorLUUIDSupport.getInstance ( );
 
 	private long getNextIdConcurrentLinkedQueueSupport ( ) {
-		if ( idGeneratorConcurrentLinkedQueueSupport == null )
-			idGeneratorConcurrentLinkedQueueSupport = IdGeneratorConcurrentLinkedQueueSupport.getINSTANCE ( );
 		return idGeneratorConcurrentLinkedQueueSupport.getNextId ( );
 	}
 
 	private long getNextIdHashSetSupport ( ) {
-		if ( idGeneratorHashSetSupport == null )
-			idGeneratorHashSetSupport = IdGeneratorHashSetSupport.getINSTANCE ( );
 		return idGeneratorHashSetSupport.getNextId ( );
 	}
 
 	private long getNextIdSnowFlakeSupport ( ) {
-		if ( idGeneratorSnowFlakeSupport == null )
-			idGeneratorSnowFlakeSupport = IdGeneratorSnowFlakeSupport.getINSTANCE ( );
 		return idGeneratorSnowFlakeSupport.getNextId ( );
 	}
 
 	public String getNextIdLUUID ( ) {
-		if ( idGeneratorLUUIDSupport == null ) idGeneratorLUUIDSupport = IdGeneratorLUUIDSupport.getInstance ( );
 		return idGeneratorLUUIDSupport.getNextId ( );
 	}
 

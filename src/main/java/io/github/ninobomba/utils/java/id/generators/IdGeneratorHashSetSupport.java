@@ -2,6 +2,7 @@ package io.github.ninobomba.utils.java.id.generators;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -21,6 +22,8 @@ public final class IdGeneratorHashSetSupport {
 
 	// Monotonic, process-unique counter, initialized near current time
 	private static final AtomicLong COUNTER = new AtomicLong ( System.currentTimeMillis ( ) );
+
+	private static final AtomicInteger queueSize = new AtomicInteger ( 0 );
 
 	// Guard for load() to avoid concurrent refills
 	private static final Object LOAD_LOCK = new Object ( );
@@ -62,11 +65,15 @@ public final class IdGeneratorHashSetSupport {
 	 */
 	public long getNextId ( ) {
 		ensureQueueInitialized ( );
-		if ( queue.size ( ) <= MIN_QUEUE_SIZE_BEFORE_LOAD ) {
+		if ( queueSize.get ( ) <= MIN_QUEUE_SIZE_BEFORE_LOAD ) {
 			load ( );
 		}
 		Long id = queue.poll ( );
-		return ( id != null ) ? id : generateId ( );
+		if ( id != null ) {
+			queueSize.decrementAndGet ( );
+			return id;
+		}
+		return generateId ( );
 	}
 
 	/**
@@ -74,16 +81,18 @@ public final class IdGeneratorHashSetSupport {
 	 */
 	private static void load ( ) {
 		ensureQueueInitialized ( );
-		if ( queue.size ( ) >= MAX_QUEUE_SIZE ) {
+		if ( queueSize.get ( ) >= MAX_QUEUE_SIZE ) {
 			return;
 		}
 		synchronized ( LOAD_LOCK ) {
-			if ( queue.size ( ) >= MAX_QUEUE_SIZE ) {
+			if ( queueSize.get ( ) >= MAX_QUEUE_SIZE ) {
 				return;
 			}
-			int toGenerate = MAX_QUEUE_SIZE - queue.size ( );
+			int toGenerate = MAX_QUEUE_SIZE - queueSize.get ( );
 			for ( int i = 0 ; i < toGenerate ; i++ ) {
-				queue.offer ( generateId ( ) );
+				if ( queue.offer ( generateId ( ) ) ) {
+					queueSize.incrementAndGet ( );
+				}
 			}
 		}
 	}

@@ -21,7 +21,7 @@ public class EventFactory {
 		}
 	}
 
-	public static Event fromJsonToMap ( ObjectMapper jsonMapper, String json ) {
+	public static Event fromJsonToEvent ( ObjectMapper jsonMapper, String json ) {
 		try {
 			final var jsonAsMap = jsonMapper.readValue ( json, typeRef );
 			if ( jsonAsMap.containsKey ( "entityName" ) ) {
@@ -33,13 +33,18 @@ public class EventFactory {
 						objectEntityId instanceof String entityId ) {
 					return buildEvent ( eventType, jsonAsMap );
 				} else {
-					throw new IllegalArgumentException ( ": " + json );
+					throw new IllegalArgumentException ( "Invalid event JSON structure: " + json );
 				}
 			}
 		} catch ( JsonProcessingException e ) {
 			throw new RuntimeException ( e );
 		}
-		return null;
+		throw new IllegalArgumentException ( "Invalid event JSON: missing required event attributes. payload=" + json );
+	}
+
+	@Deprecated ( forRemoval = false )
+	public static Event fromJsonToMap ( ObjectMapper jsonMapper, String json ) {
+		return fromJsonToEvent ( jsonMapper, json );
 	}
 
 	public static Event buildEvent ( String eventType, HashMap < String, Object > jsonAsMap ) {
@@ -57,8 +62,14 @@ public class EventFactory {
 				( String ) jsonAsMap.get ( "type" ),
 				( String ) jsonAsMap.get ( "entityIdentifier" ),
 				( String ) jsonAsMap.get ( "entityName" ),
-				( LocalDateTime ) jsonAsMap.get ( "timestamp" )
+				parseTimestamp ( jsonAsMap.get ( "timestamp" ) )
 		);
+	}
+
+	private static LocalDateTime parseTimestamp ( Object val ) {
+		if ( val instanceof LocalDateTime ldt ) return ldt;
+		if ( val instanceof String str ) return LocalDateTime.parse ( str );
+		return null;
 	}
 
 }

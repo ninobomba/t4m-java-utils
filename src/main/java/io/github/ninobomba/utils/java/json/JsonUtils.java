@@ -1,6 +1,7 @@
 package io.github.ninobomba.utils.java.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -61,6 +62,20 @@ public interface JsonUtils {
 				.writeValueAsString ( objectMapper.readValue ( json, typeInstance.getClass ( ) ) );
 	}
 
+	@SneakyThrows
+	static < T > String format ( String json, TypeReference < T > typeReference ) {
+		return objectMapper
+				.writerWithDefaultPrettyPrinter ( )
+				.writeValueAsString ( objectMapper.readValue ( json, typeReference ) );
+	}
+
+	@SneakyThrows
+	static < T > String format ( String json, Class < T > targetClass ) {
+		return objectMapper
+				.writerWithDefaultPrettyPrinter ( )
+				.writeValueAsString ( objectMapper.readValue ( json, targetClass ) );
+	}
+
 	/**
 	 * Converts a JSON string to a formatted string representation.
 	 *
@@ -87,6 +102,13 @@ public interface JsonUtils {
 		return objectMapper
 				.writer ( )
 				.writeValueAsString ( objectMapper.readValue ( json, typeInstance.getClass ( ) ) );
+	}
+
+	@SneakyThrows
+	static < T > String convertJsonToString ( String json, TypeReference < T > typeReference ) {
+		return objectMapper
+				.writer ( )
+				.writeValueAsString ( objectMapper.readValue ( json, typeReference ) );
 	}
 
 }

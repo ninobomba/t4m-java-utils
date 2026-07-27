@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.LongStream;
 
@@ -16,9 +17,12 @@ import java.util.stream.LongStream;
  */
 public final class IdGeneratorConcurrentLinkedQueueSupport {
 
-	private static ConcurrentLinkedQueue < Long > queue = null;
+	private static final ConcurrentLinkedQueue < Long > queue = new ConcurrentLinkedQueue <> ( );
+	private static final AtomicInteger queueSize = new AtomicInteger ( 0 );
+	private static final AtomicLong COUNTER = new AtomicLong ( System.currentTimeMillis ( ) );
+	private static final Object LOAD_LOCK = new Object ( );
 
-	private static IdGeneratorConcurrentLinkedQueueSupport INSTANCE;
+	private static volatile IdGeneratorConcurrentLinkedQueueSupport INSTANCE;
 
 	private static final int MAX_QUEUE_SIZE = 10_000;
 	private static final int MIN_QUEUE_SIZE_BEFORE_LOAD = 10;
@@ -41,7 +45,9 @@ public final class IdGeneratorConcurrentLinkedQueueSupport {
 	public static IdGeneratorConcurrentLinkedQueueSupport getINSTANCE ( ) {
 		if ( Objects.isNull ( INSTANCE ) ) {
 			synchronized ( IdGeneratorConcurrentLinkedQueueSupport.class ) {
-				INSTANCE = new IdGeneratorConcurrentLinkedQueueSupport ( );
+				if ( Objects.isNull ( INSTANCE ) ) {
+					INSTANCE = new IdGeneratorConcurrentLinkedQueueSupport ( );
+				}
 			}
 		}
 		return INSTANCE;
@@ -57,44 +63,51 @@ public final class IdGeneratorConcurrentLinkedQueueSupport {
 	 * @return The next ID from the IdGeneratorConcurrentLinkedQueueSupport queue.
 	 */
 	public long getNextId ( ) {
-		if ( queue.isEmpty ( ) || queue.size ( ) <= MIN_QUEUE_SIZE_BEFORE_LOAD )
+		if ( queueSize.get ( ) <= MIN_QUEUE_SIZE_BEFORE_LOAD )
 			load ( );
-		return Optional.ofNullable ( queue.poll ( ) ).orElse ( generateId ( ) );
+		Long id = queue.poll ( );
+		if ( Objects.nonNull ( id ) ) {
+			queueSize.decrementAndGet ( );
+			return id;
+		}
+		return generateId ( );
 	}
 
 	/**
 	 * Loads the IdGeneratorConcurrentLinkedQueueSupport with unique generated IDs.
 	 * It generates IDs using the generateId method of IdGeneratorConcurrentLinkedQueueSupport class,
 	 * limits the stream to half of the MAX_QUEUE_SIZE,
-	 * filters out any IDs that already exist in the queue,
-	 * and puts the remaining unique IDs into the queue using the offer method.
+	 * and puts the unique IDs into the queue using the offer method safely.
 	 * Note: This method does not return any value.
 	 */
 	private static void load ( ) {
-		queue = new ConcurrentLinkedQueue <> ( );
-		LongStream
-				.generate ( IdGeneratorConcurrentLinkedQueueSupport::generateId )
-				//.parallel()
-				.limit ( MAX_QUEUE_SIZE / 2 )
-				.distinct ( )
-				.filter ( e -> ! queue.contains ( e ) )
-				.forEach ( queue::offer );
+		if ( queueSize.get ( ) >= MAX_QUEUE_SIZE / 2 ) {
+			return;
+		}
+		synchronized ( LOAD_LOCK ) {
+			if ( queueSize.get ( ) >= MAX_QUEUE_SIZE / 2 ) {
+				return;
+			}
+			int toGenerate = ( MAX_QUEUE_SIZE / 2 ) - queueSize.get ( );
+			for ( int i = 0 ; i < toGenerate ; i++ ) {
+				queue.offer ( generateId ( ) );
+				queueSize.incrementAndGet ( );
+			}
+		}
 	}
 
 	/**
 	 * Generates a unique ID.
 	 * The method sleeps for WAIT_TIME milliseconds,
-	 * then generates a unique ID by obtaining the current system time in milliseconds
-	 * and using it to create a new AtomicLong instance.
-	 * The AtomicLong's accumulateAndGet method is called with the current system time and the Math::max function
-	 * to ensure that the generated ID is always greater than any previously generated IDs.
+	 * then generates a unique ID using a monotonic counter.
 	 *
 	 * @return The generated unique ID.
 	 */
 	@SneakyThrows
 	private static long generateId ( ) {
 		TimeUnit.MILLISECONDS.sleep ( WAIT_TIME );
-		return new AtomicLong ( System.currentTimeMillis ( ) ).accumulateAndGet ( System.currentTimeMillis ( ), Math::max );
+		long now = System.currentTimeMillis ( );
+		return COUNTER.updateAndGet ( prev -> Math.max ( prev + 1, now ) );
 	}
 
 }

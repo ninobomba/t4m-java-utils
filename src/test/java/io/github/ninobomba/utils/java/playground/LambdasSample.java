@@ -23,7 +23,7 @@ class LambdasSample {
 		result = numbers.stream ( ).reduce ( 0, Integer::sum );
 		System.out.println ( result );
 		
-		result = numbers.stream ( ).reduce ( ( a, b ) -> a + b ).get ( );
+		result = numbers.stream ( ).reduce ( ( a, b ) -> a + b ).orElseThrow ( );
 		System.out.println ( result );
 		
 		result = numbers.stream ( ).mapToInt ( e -> e ).sum ( );
@@ -62,13 +62,13 @@ class LambdasSample {
 		numbers.stream ( ).mapToInt ( Integer::intValue ).min ( ).ifPresent ( System.out::print );
 		
 		System.out.println ( );
-		int min = numbers.stream ( ).min ( Comparator.comparing ( Integer::valueOf ) ).get ( );
+		int min = numbers.stream ( ).min ( Comparator.comparing ( Integer::valueOf ) ).orElseThrow ( );
 		
 		System.out.println ( );
 		numbers.stream ( ).mapToInt ( Integer::intValue ).max ( ).ifPresent ( System.out::print );
 		
 		System.out.println ( );
-		int max = numbers.stream ( ).max ( Comparator.comparing ( Integer::valueOf ) ).get ( );
+		int max = numbers.stream ( ).max ( Comparator.comparing ( Integer::valueOf ) ).orElseThrow ( );
 		
 		System.out.println ( );
 		numbers.stream ( ).sorted ( ).toList ( ).forEach ( System.out::print );
@@ -113,7 +113,7 @@ class LambdasSample {
 		
 		if ( oddFilteredMap.isEmpty ( ) )
 			System.out.println ( "palindrome !!!" );
-		else if ( oddFilteredMap.size ( ) == 1 && oddFilteredMap.values ( ).stream ( ).findFirst ( ).get ( ) == 1 )
+		else if ( oddFilteredMap.size ( ) == 1 && oddFilteredMap.values ( ).stream ( ).findFirst ( ).orElseThrow ( ) == 1 )
 			System.out.println ( "-> palindrome !!!" );
 		else
 			System.out.println ( "no palindrome" );

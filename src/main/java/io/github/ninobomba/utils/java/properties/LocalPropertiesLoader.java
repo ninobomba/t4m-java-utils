@@ -97,7 +97,8 @@ public final class LocalPropertiesLoader {
 		listPropertiesFile ( path ).forEach ( e -> {
 			try ( var in = new FileInputStream ( ResourceUtils.getFile ( e ) ) ) {
 				properties.load ( in );
-			} catch ( Exception ignored ) {
+			} catch ( Exception exception ) {
+				log.warn ( "LocalPropertiesLoader::load() !: failed to load properties file: {}", e, exception );
 			}
 		} );
 	}

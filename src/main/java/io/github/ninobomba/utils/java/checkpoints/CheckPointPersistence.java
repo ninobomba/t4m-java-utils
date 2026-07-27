@@ -19,7 +19,7 @@ public final class CheckPointPersistence {
 	
 	private static String outputDirectory;
 	
-	private static CheckPointPersistence instance;
+	private static volatile CheckPointPersistence instance;
 	
 	
 	private CheckPointPersistence ( ) {
@@ -44,8 +44,12 @@ public final class CheckPointPersistence {
 	 */
 	public static CheckPointPersistence getInstance ( ) {
 		if ( Objects.isNull ( instance ) ) {
-			log.debug ( "CheckPointPersistence::getInstance() _: creating unique instance" );
-			instance = new CheckPointPersistence ( );
+			synchronized ( CheckPointPersistence.class ) {
+				if ( Objects.isNull ( instance ) ) {
+					log.debug ( "CheckPointPersistence::getInstance() _: creating unique instance" );
+					instance = new CheckPointPersistence ( );
+				}
+			}
 		}
 		return instance;
 	}
@@ -70,7 +74,12 @@ public final class CheckPointPersistence {
 		
 		var checkpoints = mapToString ( checkPointMap );
 		log.debug ( "CheckPointPersistence::save() _: persisting checkpoint data: {} ", outputDirectory );
-		CompletableFuture.runAsync ( ( ) -> PersistenceDiskUtils.persist ( outputDirectory, checkpoints ) );
+		CompletableFuture
+				.runAsync ( ( ) -> PersistenceDiskUtils.persist ( outputDirectory, checkpoints ) )
+				.exceptionally ( ex -> {
+					log.error ( "Failed to persist checkpoint data", ex );
+					return null;
+				} );
 	}
 	
 	/**

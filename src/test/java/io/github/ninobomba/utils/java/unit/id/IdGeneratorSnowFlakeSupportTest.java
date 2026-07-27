@@ -1,10 +1,11 @@
 package io.github.ninobomba.utils.java.unit.id;
 
 import io.github.ninobomba.utils.java.id.generators.IdGeneratorSnowFlakeSupport;
+import org.junit.jupiter.api.Test;
 
 class IdGeneratorSnowFlakeSupportTest {
 
-	//	@Test
+	@Test
 	void getNextIdTest ( ) {
 		var id = IdGeneratorSnowFlakeSupport.getINSTANCE ( ).getNextId ( );
 		System.out.println ( "IdGeneratorConcurrentLinkedQueueSupport: getNextId(): " + id );

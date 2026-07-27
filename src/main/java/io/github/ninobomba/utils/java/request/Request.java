@@ -7,6 +7,7 @@ import io.github.ninobomba.utils.java.id.generators.IdGeneratorSnowFlakeSupport;
 import io.github.ninobomba.utils.java.json.JsonUtils;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.Duration;
@@ -102,24 +103,16 @@ public class Request {
 	 * @param pretty - flag indicating if the JSON string should be formatted with indentation and line breaks
 	 * @return the JSON string representation of the object
 	 */
+	@SneakyThrows
 	public String toJsonString ( boolean pretty ) {
 		calculateElapsedTime ( );
-		var events = new StringJoiner ( "," );
-		eventQueue.forEach ( e -> events.add ( e.toJsonString ( ) ) );
-
-		var checkpoints = new StringJoiner ( "," );
-		Optional.ofNullable ( checkPointMap )
-				.orElse ( new HashMap <> ( ) )
-				.forEach ( ( k, v ) -> checkpoints.add ( v.toJsonString ( ) ) );
-
-		var response = "{"
-				.concat ( "\"id\":\"" + id + "\"," )
-				.concat ( "\"name\":\"" + name + "\"," )
-				.concat ( "\"payload\":\"" + payload + "\"," )
-				.concat ( "\"events\":[" + events + "]" + "," )
-				.concat ( "\"checkpoints\":[" + checkpoints + "]" )
-				.concat ( "}" );
-
+		Map < String, Object > map = new LinkedHashMap <> ( );
+		map.put ( "id", String.valueOf ( id ) );
+		map.put ( "name", name );
+		map.put ( "payload", payload );
+		map.put ( "events", eventQueue );
+		map.put ( "checkpoints", Optional.ofNullable ( checkPointMap ).map ( Map::values ).orElse ( Collections.emptyList ( ) ) );
+		String response = JsonUtils.objectMapper.writeValueAsString ( map );
 		return pretty ? JsonUtils.format ( response ) : response;
 	}
 

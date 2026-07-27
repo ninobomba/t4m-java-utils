@@ -14,7 +14,12 @@ public final class AuditableConstants {
 	private final String createdBy = "SYSTEM";
 	private final String lastModifiedBy = "SYSTEM";
 
-	private final Instant createdDate = Instant.now ( );
-	private final Instant lastModifiedDate = Instant.now ( );
+	public Instant getCreatedDate ( ) {
+		return Instant.now ( );
+	}
+
+	public Instant getLastModifiedDate ( ) {
+		return Instant.now ( );
+	}
 
 }

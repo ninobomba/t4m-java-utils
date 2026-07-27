@@ -21,15 +21,24 @@ public final class AuditableValuesProvider {
 	}
 
 	public static void setAuditableValues ( Object entityInstance, String username, CRUDConstants operation ) {
-		Field[] fields = entityInstance.getClass ( ).getDeclaredFields ( );
+		if ( operation == CRUDConstants.READ || operation == CRUDConstants.LIST ) {
+			return;
+		}
 
-		for ( Field field : fields ) {
-			switch ( operation ) {
-				case CREATE -> handleCreateOperation ( field, entityInstance, username );
-				case DELETE -> handleDeleteOperation ( field, entityInstance, username );
-				case UPDATE -> handleUpdateOperation ( field, entityInstance, username );
-				default -> throw new IllegalArgumentException ( "Unsupported operation: " + operation );
+		Class < ? > currentClass = entityInstance.getClass ( );
+		while ( currentClass != null && currentClass != Object.class ) {
+			Field[] fields = currentClass.getDeclaredFields ( );
+
+			for ( Field field : fields ) {
+				switch ( operation ) {
+					case CREATE -> handleCreateOperation ( field, entityInstance, username );
+					case DELETE -> handleDeleteOperation ( field, entityInstance, username );
+					case UPDATE -> handleUpdateOperation ( field, entityInstance, username );
+					case READ, LIST -> { }
+					default -> throw new IllegalArgumentException ( "Unsupported operation: " + operation );
+				}
 			}
+			currentClass = currentClass.getSuperclass ( );
 		}
 	}
 

@@ -7,6 +7,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class ApiRemoteIpTest {
 	@Test
+	void getRemoteIpByApifyTest ( ) {
+		var ip = ApiRemoteIP.getRemoteIpUsingApifyService ( );
+		assertThat ( ip ).isNotBlank ( );
+	}
+
+	@Test
 	void getRemoteIpByAwsTest ( ) {
 		var ip = ApiRemoteIP.getRemoteIpUsingAwsService ( );
 		assertThat ( ip ).isNotBlank ( );

@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
+@Deprecated ( forRemoval = false )
 public abstract class AuditableEntity {
 
 	private LocalDateTime createdAt;
