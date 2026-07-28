@@ -1,4 +1,4 @@
-package io.github.ninobomba.utils.java.unit.id;
+package io.github.ninobomba.utils.java.id.generators;
 
 import io.github.ninobomba.utils.java.id.generators.IdGeneratorSnowFlakeSupport;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package io.github.ninobomba.utils.java.unit.api.ip;
+package io.github.ninobomba.utils.java.api.ip;
 
 import io.github.ninobomba.utils.java.api.ip.ApiRemoteIP;
 import org.junit.jupiter.api.Test;

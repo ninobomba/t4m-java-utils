@@ -1,4 +1,4 @@
-package io.github.ninobomba.utils.java.unit.properties;
+package io.github.ninobomba.utils.java.properties;
 
 import io.github.ninobomba.utils.java.properties.LocalPropertiesLoader;
 import org.junit.jupiter.api.Test;

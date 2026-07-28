@@ -1,4 +1,4 @@
-package io.github.ninobomba.utils.java.unit.request;
+package io.github.ninobomba.utils.java.request;
 
 import io.github.ninobomba.utils.java.json.JsonUtils;
 import io.github.ninobomba.utils.java.request.Request;

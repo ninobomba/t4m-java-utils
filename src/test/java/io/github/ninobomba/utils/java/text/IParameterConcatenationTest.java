@@ -1,4 +1,4 @@
-package io.github.ninobomba.utils.java.unit.text;
+package io.github.ninobomba.utils.java.text;
 
 import io.github.ninobomba.utils.java.text.IParameterConcatenation;
 import org.junit.jupiter.api.Test;

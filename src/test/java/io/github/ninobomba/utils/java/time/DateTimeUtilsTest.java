@@ -1,4 +1,4 @@
-package io.github.ninobomba.utils.java.unit.time;
+package io.github.ninobomba.utils.java.time;
 
 import io.github.ninobomba.utils.java.time.DateTimeUtils;
 import org.junit.jupiter.api.Test;

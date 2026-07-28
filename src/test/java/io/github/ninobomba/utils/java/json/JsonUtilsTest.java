@@ -1,4 +1,4 @@
-package io.github.ninobomba.utils.java.unit.json;
+package io.github.ninobomba.utils.java.json;
 
 import io.github.ninobomba.utils.java.json.JsonUtils;
 import org.junit.jupiter.api.Test;

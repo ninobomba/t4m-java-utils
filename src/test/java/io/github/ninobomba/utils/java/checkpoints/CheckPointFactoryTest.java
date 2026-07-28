@@ -1,4 +1,4 @@
-package io.github.ninobomba.utils.java.unit.checkpoints;
+package io.github.ninobomba.utils.java.checkpoints;
 
 import io.github.ninobomba.utils.java.checkpoints.CheckPointFactory;
 import org.junit.jupiter.api.DisplayName;
