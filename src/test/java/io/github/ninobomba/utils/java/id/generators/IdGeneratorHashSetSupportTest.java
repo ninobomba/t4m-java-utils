@@ -11,15 +11,15 @@ class IdGeneratorHashSetSupportTest {
 
 	@Test
 	void singletonAccessorsShouldReturnSameInstance ( ) {
-		var first = IdGeneratorHashSetSupport.getInstance ( );
-		var second = IdGeneratorHashSetSupport.getINSTANCE ( );
+		var first = IdGeneratorHashSetSupport.instance( );
+		var second = IdGeneratorHashSetSupport.instance( );
 
 		assertThat ( first ).isSameAs ( second );
 	}
 
 	@Test
 	void getNextIdShouldReturnPositiveValues ( ) {
-		var id = IdGeneratorHashSetSupport.getInstance ( ).getNextId ( );
+		var id = IdGeneratorHashSetSupport.instance( ).getNextId ( );
 
 		assertThat ( id ).isPositive ( );
 	}
@@ -29,7 +29,7 @@ class IdGeneratorHashSetSupportTest {
 		var ids = new HashSet < Long > ( );
 
 		IntStream.range ( 0, 2_000 )
-				.mapToLong ( index -> IdGeneratorHashSetSupport.getInstance ( ).getNextId ( ) )
+				.mapToLong ( index -> IdGeneratorHashSetSupport.instance( ).getNextId ( ) )
 				.forEach ( ids::add );
 
 		assertThat ( ids ).hasSize ( 2_000 );

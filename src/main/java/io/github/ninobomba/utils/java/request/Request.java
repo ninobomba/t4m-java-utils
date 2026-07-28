@@ -21,7 +21,7 @@ import java.util.*;
 public class Request {
 
 	@Builder.Default
-	private final long id = IdGeneratorSnowFlakeSupport.getINSTANCE ( ).getNextId ( );
+	private final long id = IdGeneratorSnowFlakeSupport.instance( ).getNextId ( );
 
 	@Getter
 	private String name;

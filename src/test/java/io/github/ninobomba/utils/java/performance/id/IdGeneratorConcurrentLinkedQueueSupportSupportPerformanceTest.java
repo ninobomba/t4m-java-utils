@@ -33,7 +33,7 @@ public class IdGeneratorConcurrentLinkedQueueSupportSupportPerformanceTest {
 
 		int size = 10_000;
 		IntStream.range ( 0, size ).forEach ( index -> {
-			accumulator.add ( IdGeneratorConcurrentLinkedQueueSupport.getINSTANCE ( ).getNextId ( ) );
+			accumulator.add ( IdGeneratorConcurrentLinkedQueueSupport.instance( ).getNextId ( ) );
 		} );
 
 		assert ( accumulator.size ( ) == size );

@@ -17,14 +17,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  * To generate a new id number, call the getNextId() method:
  * <pre>
  * {@code
- * long id = IdGeneratorSnowFlakeSupport.getInstance().getNextId();
+ * long id = IdGeneratorSnowFlakeSupport.instance().getNextId();
  * }
  * </pre>
  * <p>
  * To load new id numbers into memory, call the load() method:
  * <pre>
  * {@code
- * IdGeneratorSnowFlakeSupport.getInstance().load();
+ * IdGeneratorSnowFlakeSupport.instance().load();
  * }
  * </pre>
  */
@@ -74,7 +74,7 @@ public final class IdGeneratorSnowFlakeSupport {
 	 *
 	 * @return an instance of the IdGeneratorSnowFlakeSupport class
 	 */
-	public static IdGeneratorSnowFlakeSupport getINSTANCE ( ) {
+	public static IdGeneratorSnowFlakeSupport instance( ) {
 		IdGeneratorSnowFlakeSupport local = INSTANCE;
 		if ( local == null ) {
 			synchronized ( IdGeneratorSnowFlakeSupport.class ) {

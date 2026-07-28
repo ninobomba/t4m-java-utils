@@ -25,7 +25,7 @@ public final class IdGeneratorLUUIDSupport {
 	 *
 	 * @return the instance of IdGeneratorLUUIDSupport
 	 */
-	public static IdGeneratorLUUIDSupport getInstance ( ) {
+	public static IdGeneratorLUUIDSupport instance( ) {
 		if ( INSTANCE == null ) {
 			synchronized ( IdGeneratorLUUIDSupport.class ) {
 				if ( INSTANCE == null ) {

@@ -38,7 +38,7 @@ public final class IdGeneratorHashSetSupport {
 	/**
 	 * Returns the singleton instance of IdGeneratorHashSetSupport using double-checked locking.
 	 */
-	public static IdGeneratorHashSetSupport getInstance ( ) {
+	public static IdGeneratorHashSetSupport instance( ) {
 		IdGeneratorHashSetSupport local = INSTANCE;
 		if ( local == null ) {
 			synchronized ( IdGeneratorHashSetSupport.class ) {
@@ -50,11 +50,6 @@ public final class IdGeneratorHashSetSupport {
 			}
 		}
 		return local;
-	}
-
-	// Backwards-compatible accessor (delegates to the corrected name)
-	public static IdGeneratorHashSetSupport getINSTANCE ( ) {
-		return getInstance ( );
 	}
 
 	/**

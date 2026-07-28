@@ -46,7 +46,7 @@ public final class CheckPointPersistence {
 		if ( Objects.isNull ( instance ) ) {
 			synchronized ( CheckPointPersistence.class ) {
 				if ( Objects.isNull ( instance ) ) {
-					log.debug ( "CheckPointPersistence::getInstance() _: creating unique instance" );
+					log.debug ( "CheckPointPersistence::instance() _: creating unique instance" );
 					instance = new CheckPointPersistence ( );
 				}
 			}

@@ -48,7 +48,7 @@ public final class CheckPointFactory {
      */
     public static CheckPointFactory getInstance ( ) {
         if ( Objects.isNull( instance ) ) {
-            log.debug( "CheckPointFactory::getInstance() _: creating a unique singleton instance" );
+            log.debug( "CheckPointFactory::instance() _: creating a unique singleton instance" );
             instance = new CheckPointFactory( );
         }
         return instance;

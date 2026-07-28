@@ -39,12 +39,12 @@ public class Event {
 
 	/**
 	 * This method is used to assign default values to the id, timestamp, and formattedTimestamp variables.
-	 * It generates a unique id using the IdGeneratorSnowFlakeSupport.getInstance().getNextId() method.
+	 * It generates a unique id using the IdGeneratorSnowFlakeSupport.instance().getNextId() method.
 	 * It sets the current timestamp using the LocalDateTime.now () method.
 	 * It formats the timestamp using the DateTimeFormatter.ofPattern() method with the pattern "yyyy-MM-dd HH:mm:ss.SSS".
 	 */
 	private void assignDefaults ( ) {
-		id = IdGeneratorSnowFlakeSupport.getINSTANCE ( ).getNextId ( );
+		id = IdGeneratorSnowFlakeSupport.instance( ).getNextId ( );
 		timestamp = LocalDateTime.now ( );
 		formattedTimestamp = timestamp.format ( DateTimeFormatter.ofPattern ( "yyyy-MM-dd HH:mm:ss.SSS" ) );
 	}

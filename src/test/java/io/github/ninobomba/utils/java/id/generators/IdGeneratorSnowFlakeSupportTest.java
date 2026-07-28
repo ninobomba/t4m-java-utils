@@ -7,7 +7,7 @@ class IdGeneratorSnowFlakeSupportTest {
 
 	@Test
 	void getNextIdTest ( ) {
-		var id = IdGeneratorSnowFlakeSupport.getINSTANCE ( ).getNextId ( );
+		var id = IdGeneratorSnowFlakeSupport.instance ( ).getNextId ( );
 		System.out.println ( "IdGeneratorConcurrentLinkedQueueSupport: getNextId(): " + id );
 		assert ( id > 0 );
 	}

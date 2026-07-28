@@ -9,10 +9,10 @@ public enum IdGenerator {
 
 	INSTANCE;
 
-	private final IdGeneratorConcurrentLinkedQueueSupport idGeneratorConcurrentLinkedQueueSupport = IdGeneratorConcurrentLinkedQueueSupport.getINSTANCE ( );
-	private final IdGeneratorHashSetSupport idGeneratorHashSetSupport = IdGeneratorHashSetSupport.getINSTANCE ( );
-	private final IdGeneratorSnowFlakeSupport idGeneratorSnowFlakeSupport = IdGeneratorSnowFlakeSupport.getINSTANCE ( );
-	private final IdGeneratorLUUIDSupport idGeneratorLUUIDSupport = IdGeneratorLUUIDSupport.getInstance ( );
+	private final IdGeneratorConcurrentLinkedQueueSupport idGeneratorConcurrentLinkedQueueSupport = IdGeneratorConcurrentLinkedQueueSupport.instance( );
+	private final IdGeneratorHashSetSupport idGeneratorHashSetSupport = IdGeneratorHashSetSupport.instance( );
+	private final IdGeneratorSnowFlakeSupport idGeneratorSnowFlakeSupport = IdGeneratorSnowFlakeSupport.instance( );
+	private final IdGeneratorLUUIDSupport idGeneratorLUUIDSupport = IdGeneratorLUUIDSupport.instance( );
 
 	private long getNextIdConcurrentLinkedQueueSupport ( ) {
 		return idGeneratorConcurrentLinkedQueueSupport.getNextId ( );

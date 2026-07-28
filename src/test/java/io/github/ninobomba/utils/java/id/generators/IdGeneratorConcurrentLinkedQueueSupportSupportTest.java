@@ -1,6 +1,5 @@
 package io.github.ninobomba.utils.java.id.generators;
 
-import io.github.ninobomba.utils.java.id.generators.IdGeneratorConcurrentLinkedQueueSupport;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -16,7 +15,7 @@ public class IdGeneratorConcurrentLinkedQueueSupportSupportTest {
 
 	@Test
 	void getNextIdTest ( ) {
-		var id = IdGeneratorConcurrentLinkedQueueSupport.getINSTANCE ( ).getNextId ( );
+		var id = IdGeneratorConcurrentLinkedQueueSupport.instance( ).getNextId ( );
 		System.out.println ( "IdGeneratorConcurrentLinkedQueueSupport: getNextId(): " + id );
 		assert ( id > 0 );
 	}
@@ -30,7 +29,7 @@ public class IdGeneratorConcurrentLinkedQueueSupportSupportTest {
 
 		int size = 10_000;
 		IntStream.range ( 0, size ).forEach ( index -> {
-			accumulator.add ( IdGeneratorConcurrentLinkedQueueSupport.getINSTANCE ( ).getNextId ( ) );
+			accumulator.add ( IdGeneratorConcurrentLinkedQueueSupport.instance( ).getNextId ( ) );
 		} );
 
 		assert ( accumulator.size ( ) == size );

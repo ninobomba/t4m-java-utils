@@ -3,12 +3,10 @@ package io.github.ninobomba.utils.java.id.generators;
 import lombok.SneakyThrows;
 
 import java.util.Objects;
-import java.util.Optional;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.LongStream;
 
 /**
  * The IdGeneratorConcurrentLinkedQueueSupport class is responsible for generating unique IDs.
@@ -42,7 +40,7 @@ public final class IdGeneratorConcurrentLinkedQueueSupport {
 	 *
 	 * @return the instance of IdGeneratorConcurrentLinkedQueueSupport
 	 */
-	public static IdGeneratorConcurrentLinkedQueueSupport getINSTANCE ( ) {
+	public static IdGeneratorConcurrentLinkedQueueSupport instance( ) {
 		if ( Objects.isNull ( INSTANCE ) ) {
 			synchronized ( IdGeneratorConcurrentLinkedQueueSupport.class ) {
 				if ( Objects.isNull ( INSTANCE ) ) {
