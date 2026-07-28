@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public final class LocalPropertiesLoader {
 
 	private static final String DEFAULT_PROPERTIES_PATH = "src/main/resources/custom/";
+	private static final List < String > SENSITIVE_KEYS = List.of ( "token", "secret", "password", "key" );
 
 	private static Properties properties;
 
@@ -112,9 +113,14 @@ public final class LocalPropertiesLoader {
 		properties
 				.entrySet ( )
 				.stream ( )
-				.filter ( map -> ! StringUtils.containsAnyIgnoreCase ( map.getKey ( ).toString ( ), "token", "secret", "password", "key" ) )
+				.filter ( map -> ! containsSensitiveKey ( map.getKey ( ).toString ( ) ) )
 				.collect ( Collectors.toMap ( Map.Entry::getKey, Map.Entry::getValue ) )
 				.forEach ( ( k, v ) -> log.debug ( "LocalPropertiesLoader::print() _: kv: {}:{}", k, v ) );
+	}
+
+	private static boolean containsSensitiveKey ( String key ) {
+		var normalizedKey = key.toLowerCase ( Locale.ROOT );
+		return SENSITIVE_KEYS.stream ( ).anyMatch ( normalizedKey::contains );
 	}
 
 	/**
