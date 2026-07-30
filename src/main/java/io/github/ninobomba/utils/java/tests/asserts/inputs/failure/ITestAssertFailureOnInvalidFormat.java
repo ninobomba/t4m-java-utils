@@ -1,6 +1,6 @@
-package io.github.ninobomba.utils.java.tests.asserts.inputs;
+package io.github.ninobomba.utils.java.tests.asserts.inputs.failure;
 
-public interface ITestAssertInvalidFormat {
+public interface ITestAssertFailureOnInvalidFormat {
 
     void assertFailureOnInvalidFormat(String input, String regex);
 

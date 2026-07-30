@@ -1,6 +1,6 @@
-package io.github.ninobomba.utils.java.tests.asserts.inputs;
+package io.github.ninobomba.utils.java.tests.asserts.inputs.failure;
 
-public interface ITestAssertMinInput {
+public interface ITestAssertFailureOnInvalidMinInput {
 
     void assertFailureOnMinInput(String input, String expectedErrorMessage);
 

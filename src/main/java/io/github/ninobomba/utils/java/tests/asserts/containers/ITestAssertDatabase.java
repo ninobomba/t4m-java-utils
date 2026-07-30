@@ -2,7 +2,7 @@ package io.github.ninobomba.utils.java.tests.asserts.containers;
 
 public interface ITestAssertDatabase {
 
-	boolean recordsInDatabase(int expectedRecords);
+	boolean expectedRecordsOnDatabase(int expectedRecords);
 
 	//	boolean areRecordsInDatabase ( );
 //	boolean areRecordsInDatabase ( String tableName, int expectedRecords );

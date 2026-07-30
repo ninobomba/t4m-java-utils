@@ -1,9 +1,9 @@
-package io.github.ninobomba.utils.java.tests.asserts.inputs;
+package io.github.ninobomba.utils.java.tests.asserts.inputs.failure;
 
 import java.util.Collection;
 import java.util.Map;
 
-public interface ITestAssertInvalidInput {
+public interface ITestAsserFailureOnInvalidInput {
 
     void assertFailureOnInvalidInput(String input);
 

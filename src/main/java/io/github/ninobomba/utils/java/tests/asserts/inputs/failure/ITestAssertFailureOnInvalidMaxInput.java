@@ -1,6 +1,6 @@
-package io.github.ninobomba.utils.java.tests.asserts.inputs;
+package io.github.ninobomba.utils.java.tests.asserts.inputs.failure;
 
-public interface ITestAssertMaxInput {
+public interface ITestAssertFailureOnInvalidMaxInput {
 
     void assertFailureOnMaxInput(String input, int maxLength);
 
