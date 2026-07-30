@@ -1,6 +1,6 @@
 package io.github.ninobomba.utils.java.tests.asserts.containers;
 
-public interface ITestValidateDbData {
+public interface ITestAssertDatabase {
 
 	boolean recordsInDatabase(int expectedRecords);
 

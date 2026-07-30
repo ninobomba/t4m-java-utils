@@ -1,6 +1,6 @@
 package io.github.ninobomba.utils.java.tests.asserts.containers;
 
-public interface ITestValidateQueueData {
+public interface ITestAssertQueue {
 
 	boolean recordsInQueue(int expectedRecords );
 
