@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowPersistence<I, O> {
+public interface IWorkflowTaskPersistence<I, O> {
 
     /**
      * Applies persistence handling to the given input.

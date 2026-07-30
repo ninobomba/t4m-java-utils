@@ -15,5 +15,5 @@ public interface IWorkflowLogging<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O log(I input);
+    O logExecution(I input);
 }
