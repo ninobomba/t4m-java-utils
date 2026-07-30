@@ -1,9 +1,8 @@
-package io.github.ninobomba.utils.java.tests.contracts.asserts.components;
+package io.github.ninobomba.utils.java.tests.asserts.containers;
 
 public interface ITestValidateDbData {
 
-
-	boolean recordsInDatabase(int expectedRecords );
+	boolean recordsInDatabase(int expectedRecords);
 
 	//	boolean areRecordsInDatabase ( );
 //	boolean areRecordsInDatabase ( String tableName, int expectedRecords );

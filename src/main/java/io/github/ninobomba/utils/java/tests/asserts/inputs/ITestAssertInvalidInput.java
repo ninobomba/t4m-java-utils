@@ -1,4 +1,4 @@
-package io.github.ninobomba.utils.java.tests.contracts.inputs;
+package io.github.ninobomba.utils.java.tests.asserts.inputs;
 
 import java.util.Collection;
 import java.util.Map;

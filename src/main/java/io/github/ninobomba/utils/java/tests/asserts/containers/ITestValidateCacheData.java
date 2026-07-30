@@ -1,4 +1,4 @@
-package io.github.ninobomba.utils.java.tests.contracts.asserts.components;
+package io.github.ninobomba.utils.java.tests.asserts.containers;
 
 public interface ITestValidateCacheData {
 
