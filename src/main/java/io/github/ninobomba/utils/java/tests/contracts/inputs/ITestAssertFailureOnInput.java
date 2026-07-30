@@ -1,4 +1,4 @@
-package io.github.ninobomba.utils.java.tests.contracts.asserts;
+package io.github.ninobomba.utils.java.tests.contracts.inputs;
 
 public interface ITestAssertFailureOnInput {
 
