@@ -2,7 +2,7 @@ package io.github.ninobomba.utils.java.tests.asserts.inputs.failure;
 
 public interface ITestAssertFailureOnInvalidFormat {
 
-    void assertFailureOnInvalidFormat(String input, String regex);
+    boolean assertFailureOnInvalidFormat(String input, String regex);
 
     default void testFormat(String input, String regex) {
         requireInputAndRegex(input, regex);

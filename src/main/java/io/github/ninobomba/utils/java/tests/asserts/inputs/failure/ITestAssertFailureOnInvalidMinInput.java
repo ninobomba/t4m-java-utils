@@ -2,7 +2,7 @@ package io.github.ninobomba.utils.java.tests.asserts.inputs.failure;
 
 public interface ITestAssertFailureOnInvalidMinInput {
 
-    void assertFailureOnMinInput(String input, String expectedErrorMessage);
+    boolean assertFailureOnMinInput(String input, String expectedErrorMessage);
 
     default void testMinInput(String input, int minLength) {
         requireNonNull(input);

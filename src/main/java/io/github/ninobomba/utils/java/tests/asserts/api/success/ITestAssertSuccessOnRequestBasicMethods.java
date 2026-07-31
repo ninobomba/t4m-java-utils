@@ -2,12 +2,12 @@ package io.github.ninobomba.utils.java.tests.asserts.api.success;
 
 public interface ITestAssertSuccessOnRequestBasicMethods {
 
-    void assertSuccessOnRequestHeaders();
-    void assertSuccessOnRequestBodY();
+    boolean assertSuccessOnRequestHeaders();
+    boolean assertSuccessOnRequestBody();
 
-    void assertSuccessOnRequestQueryParameters();
-    void assertSuccessOnRequestPathParameters();
+    boolean assertSuccessOnRequestQueryParameters();
+    boolean assertSuccessOnRequestPathParameters();
 
-    void assertSuccessOnRequestMethod();
+    boolean assertSuccessOnRequestMethod();
 
 }

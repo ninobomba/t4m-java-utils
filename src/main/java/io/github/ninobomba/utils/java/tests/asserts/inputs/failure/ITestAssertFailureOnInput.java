@@ -1,12 +1,12 @@
 package io.github.ninobomba.utils.java.tests.asserts.inputs.failure;
 
-public interface ITestAsserFailureOnInput extends
+public interface ITestAssertFailureOnInput extends
         ITestAssertFailureOnInvalidFormat,
         ITestAssertFailureOnInvalidMaxInput,
         ITestAssertFailureOnInvalidMinInput,
-        ITestAsserFailureOnInvalidInput
+        ITestAssertFailureOnNullOrEmptyInput
 {
 
-    void assertFailureOnInvalidInput(String input);
+    boolean assertFailureOnInvalidInput(String input);
 
 }

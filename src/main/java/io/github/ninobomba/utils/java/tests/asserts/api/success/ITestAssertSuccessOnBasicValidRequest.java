@@ -5,6 +5,6 @@ public interface ITestAssertSuccessOnBasicValidRequest extends
         ITestAssertSuccessOnResponseBasicMethods
 {
 
-    void assertSuccessOnValidRequest ( );
+    boolean assertSuccessOnValidRequest ( );
 
 }

@@ -3,9 +3,9 @@ package io.github.ninobomba.utils.java.tests.asserts.inputs.failure;
 import java.util.Collection;
 import java.util.Map;
 
-public interface ITestAsserFailureOnInvalidInput {
+public interface ITestAssertFailureOnNullOrEmptyInput {
 
-    void assertFailureOnInvalidInput(String input);
+    boolean assertFailureOnNullOrEmptyInput(String input);
 
     default void checkIsNullOrEmpty(Object input) {
         if (input == null) {

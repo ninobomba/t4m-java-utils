@@ -4,5 +4,5 @@ public interface ITestAssertFailureOnBasicInvalidRequest extends
         ITestAssertFailureOnRequestBasicMethods,
         ITestAssertFailureOnResponseBasicMethods
 {
-    void assertFailureOnInvalidRequest();
+    boolean assertFailureOnInvalidRequest();
 }

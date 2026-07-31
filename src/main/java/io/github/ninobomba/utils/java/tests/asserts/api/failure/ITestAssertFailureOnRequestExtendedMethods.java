@@ -2,18 +2,18 @@ package io.github.ninobomba.utils.java.tests.asserts.api.failure;
 
 public interface ITestAssertFailureOnRequestExtendedMethods {
 
-    void assertSuccessOnRequestFormParameters();
+    boolean assertSuccessOnRequestFormParameters();
 
-    void assertSuccessOnRequestMultipartFormData();
-    void assertSuccessOnRequestJsonBody();
-    void assertSuccessOnRequestXmlBody();
-    void assertSuccessOnRequestTextBody();
-    void assertSuccessOnRequestHtmlBody();
-    void assertSuccessOnRequestBinaryBody();
-    void assertSuccessOnRequestCustomBody();
+    boolean assertSuccessOnRequestMultipartFormData();
+    boolean assertSuccessOnRequestJsonBody();
+    boolean assertSuccessOnRequestXmlBody();
+    boolean assertSuccessOnRequestTextBody();
+    boolean assertSuccessOnRequestHtmlBody();
+    boolean assertSuccessOnRequestBinaryBody();
+    boolean assertSuccessOnRequestCustomBody();
 
-    void assertSuccessOnRequestMethod();
-    void assertSuccessOnRequestCookies();
-    void assertSuccessOnRequestUrl();
+    boolean assertSuccessOnRequestMethod();
+    boolean assertSuccessOnRequestCookies();
+    boolean assertSuccessOnRequestUrl();
 
 }

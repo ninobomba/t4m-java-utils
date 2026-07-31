@@ -2,7 +2,7 @@ package io.github.ninobomba.utils.java.tests.asserts.inputs.failure;
 
 public interface ITestAssertFailureOnInvalidMaxInput {
 
-    void assertFailureOnMaxInput(String input, int maxLength);
+    boolean assertFailureOnMaxInput(String input, int maxLength);
 
     default void testStringMaxLength(String input, int maxLength) {
         requireNonNull(input);
