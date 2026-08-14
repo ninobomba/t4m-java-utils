@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowNotification<I, O> {
+public interface IWorkflowNotification<I, O, E extends Throwable> {
 
     /**
      * Applies notification handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowNotification<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O notifyWorkflow(I input);
+    O notify(I input) throws E;
 }

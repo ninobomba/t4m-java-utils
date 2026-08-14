@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowInteroperability<I, O> {
+public interface IWorkflowInteroperability<I, O, E extends Throwable> {
 
     /**
      * Applies interoperability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowInteroperability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O interoperate(I input);
+    O interoperate(I input) throws E;
 }

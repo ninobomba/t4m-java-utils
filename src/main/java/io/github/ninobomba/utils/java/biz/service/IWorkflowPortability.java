@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowPortability<I, O> {
+public interface IWorkflowPortability<I, O, E extends Throwable> {
 
     /**
      * Applies portability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowPortability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O port(I input);
+    O port(I input) throws E;
 }

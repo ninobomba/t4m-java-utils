@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowAccessibility<I, O> {
+public interface IWorkflowAccessibility<I, O, E extends Throwable> {
 
     /**
      * Applies accessibility handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowAccessibility<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O improveAccessibility(I input);
+    O improveAccessibility(I input) throws E;
 }

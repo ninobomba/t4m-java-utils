@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowMaintainability<I, O> {
+public interface IWorkflowMaintainability<I, O, E extends Throwable> {
 
     /**
      * Applies maintainability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowMaintainability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O maintain(I input);
+    O maintain(I input) throws E;
 }

@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowOrchestration<I, O> {
+public interface IWorkflowOrchestration<I, O, E extends Throwable> {
 
     /**
      * Applies orchestration handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowOrchestration<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O orchestrate(I input);
+    O orchestrate(I input) throws E;
 }

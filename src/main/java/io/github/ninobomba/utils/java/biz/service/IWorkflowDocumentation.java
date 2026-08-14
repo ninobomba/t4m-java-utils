@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowDocumentation<I, O> {
+public interface IWorkflowDocumentation<I, O, E extends Throwable> {
 
     /**
      * Applies documentation handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowDocumentation<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O document(I input);
+    O document(I input) throws E;
 }

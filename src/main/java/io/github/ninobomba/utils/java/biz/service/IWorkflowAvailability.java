@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowAvailability<I, O> {
+public interface IWorkflowAvailability<I, O, E extends Throwable> {
 
     /**
      * Applies availability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowAvailability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O ensureAvailability(I input);
+    O ensureAvailability(I input) throws E;
 }

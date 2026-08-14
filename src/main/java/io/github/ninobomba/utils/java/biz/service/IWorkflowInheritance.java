@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowInheritance<I, O> {
+public interface IWorkflowInheritance<I, O, E extends Throwable> {
 
     /**
      * Applies inheritance handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowInheritance<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O inherit(I input);
+    O inherit(I input) throws E;
 }

@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowPerformance<I, O> {
+public interface IWorkflowPerformance<I, O, E extends Throwable> {
 
     /**
      * Applies performance handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowPerformance<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O optimizePerformance(I input);
+    O optimizePerformance(I input) throws E;
 }

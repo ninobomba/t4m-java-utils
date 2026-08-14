@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowTestability<I, O> {
+public interface IWorkflowTestability<I, O, E extends Throwable> {
 
     /**
      * Applies testability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowTestability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O improveTestability(I input);
+    O improveTestability(I input) throws E;
 }

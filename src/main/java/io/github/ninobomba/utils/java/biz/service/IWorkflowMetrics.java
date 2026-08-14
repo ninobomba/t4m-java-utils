@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowMetrics<I, O> {
+public interface IWorkflowMetrics<I, O, E extends Throwable> {
 
     /**
      * Applies metrics handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowMetrics<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O collectMetrics(I input);
+    O collectMetrics(I input) throws E;
 }

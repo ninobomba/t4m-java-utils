@@ -1,7 +1,5 @@
 package io.github.ninobomba.utils.java.biz.service;
 
-import io.github.ninobomba.utils.java.patterns.process.OperationResult;
-
 /**
  * Sanitizes workflow input before it is processed.
  *
@@ -9,7 +7,7 @@ import io.github.ninobomba.utils.java.patterns.process.OperationResult;
  * @param <O> sanitized output type
  */
 @FunctionalInterface
-public interface IWorkflowInputSanitizer<I, O> {
+public interface IWorkflowInputSanitizer<I, O, E extends Throwable> {
 
     /**
      * Sanitizes the given input.
@@ -17,5 +15,5 @@ public interface IWorkflowInputSanitizer<I, O> {
      * @param input input to sanitize; null-handling is implementation-specific
      * @return sanitized output
      */
-    O sanitize(I input);
+    O sanitize(I input) throws E;
 }

@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowPolymorphism<I, O> {
+public interface IWorkflowPolymorphism<I, O, E extends Throwable> {
 
     /**
      * Applies polymorphism handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowPolymorphism<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O applyPolymorphism(I input);
+    O applyPolymorphism(I input) throws E;
 }

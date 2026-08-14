@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowEventPublishing<I, O> {
+public interface IWorkflowEventPublishing<I, O, E extends Throwable> {
 
     /**
      * Applies event publishing handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowEventPublishing<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O publishEvent(I input);
+    O publishEvent(I input) throws E;
 }

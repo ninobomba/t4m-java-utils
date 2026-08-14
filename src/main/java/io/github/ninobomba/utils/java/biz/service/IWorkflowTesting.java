@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowTesting<I, O> {
+public interface IWorkflowTesting<I, O, E extends Throwable> {
 
     /**
      * Applies testing handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowTesting<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O test(I input);
+    O test(I input) throws E;
 }

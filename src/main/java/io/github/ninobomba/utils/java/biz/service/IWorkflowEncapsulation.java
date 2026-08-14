@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowEncapsulation<I, O> {
+public interface IWorkflowEncapsulation<I, O, E extends Throwable> {
 
     /**
      * Applies encapsulation handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowEncapsulation<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O encapsulate(I input);
+    O encapsulate(I input) throws E;
 }

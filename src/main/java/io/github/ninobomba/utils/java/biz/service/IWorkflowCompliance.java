@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowCompliance<I, O> {
+public interface IWorkflowCompliance<I, O, E extends Throwable> {
 
     /**
      * Applies compliance handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowCompliance<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O ensureCompliance(I input);
+    O ensureCompliance(I input) throws E;
 }

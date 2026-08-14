@@ -10,7 +10,7 @@ components for common tasks. It is built on Java 21 and leverages modern languag
 - **Artifact ID**: t4m-java-utils
 - **Version**: 1.0.0.40
 - **License**: Apache License 2.0
-- **Java Version**: 21
+- **Java Version**: 25
 - **Maven Central**: [io.github.ninobomba/t4m-java-utils](https://central.sonatype.com/artifact/io.github.ninobomba/t4m-java-utils)
 
 ## Key Features

@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowObservability<I, O> {
+public interface IWorkflowObservability<I, O, E extends Throwable> {
 
     /**
      * Applies observability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowObservability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O observe(I input);
+    O observe(I input) throws E;
 }

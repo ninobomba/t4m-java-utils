@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowAbstraction<I, O> {
+public interface IWorkflowAbstraction<I, O, E extends Throwable> {
 
     /**
      * Applies abstraction handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowAbstraction<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O abstractWorkflow(I input);
+    O abstractWorkflow(I input) throws E;
 }

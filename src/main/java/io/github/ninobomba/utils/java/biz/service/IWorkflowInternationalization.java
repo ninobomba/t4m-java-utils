@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowInternationalization<I, O> {
+public interface IWorkflowInternationalization<I, O, E extends Throwable> {
 
     /**
      * Applies internationalization handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowInternationalization<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O internationalize(I input);
+    O internationalize(I input) throws E;
 }

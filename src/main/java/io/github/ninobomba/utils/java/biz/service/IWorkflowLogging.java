@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowLogging<I, O> {
+public interface IWorkflowLogging<I, O, E extends Throwable> {
 
     /**
      * Applies logging handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowLogging<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O logExecution(I input);
+    O logExecution(I input) throws E;
 }

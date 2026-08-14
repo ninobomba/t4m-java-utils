@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowScalability<I, O> {
+public interface IWorkflowScalability<I, O, E extends Throwable> {
 
     /**
      * Applies scalability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowScalability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O scale(I input);
+    O scale(I input) throws E;
 }

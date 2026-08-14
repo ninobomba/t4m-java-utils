@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowEventPersistence<I, O> {
+public interface IWorkflowEventPersistence<I, O, E extends Throwable> {
 
     /**
      * Applies event persistence handling to the given input.

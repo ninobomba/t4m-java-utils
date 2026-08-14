@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowCustomizability<I, O> {
+public interface IWorkflowCustomizability<I, O, E extends Throwable> {
 
     /**
      * Applies customizability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowCustomizability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O customize(I input);
+    O customize(I input) throws E;
 }

@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowSecurity<I, O> {
+public interface IWorkflowSecurity<I, O, E extends Throwable> {
 
     /**
      * Applies security handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowSecurity<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O secure(I input);
+    O secure(I input) throws E;
 }

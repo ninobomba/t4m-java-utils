@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowVersioning<I, O> {
+public interface IWorkflowVersioning<I, O, E extends Throwable> {
 
     /**
      * Applies versioning handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowVersioning<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O version(I input);
+    O version(I input) throws E;
 }

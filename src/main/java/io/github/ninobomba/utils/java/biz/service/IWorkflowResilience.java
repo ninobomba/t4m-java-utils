@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowResilience<I, O> {
+public interface IWorkflowResilience<I, O, E extends Throwable> {
 
     /**
      * Applies resilience handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowResilience<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O hardenResilience(I input);
+    O hardenResilience(I input) throws E;
 }

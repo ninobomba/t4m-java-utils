@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowValidation<I, O> {
+public interface IWorkflowValidation<I, O, E extends Throwable> {
 
     /**
      * Applies validation handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowValidation<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O validate(I input);
+    O validate(I input) throws E;
 }

@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowReusability<I, O> {
+public interface IWorkflowReusability<I, O, E extends Throwable> {
 
     /**
      * Applies reusability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowReusability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O reuse(I input);
+    O reuse(I input) throws E;
 }

@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowErrorHandling<I, O> {
+public interface IWorkflowErrorHandling<I, O, E extends Throwable> {
 
     /**
      * Applies error handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowErrorHandling<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O handleError(I input);
+    O handleError(I input) throws E;
 }

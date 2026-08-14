@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowComposability<I, O> {
+public interface IWorkflowComposability<I, O, E extends Throwable> {
 
     /**
      * Applies composability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowComposability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O compose(I input);
+    O compose(I input) throws E;
 }

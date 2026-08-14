@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowUsability<I, O> {
+public interface IWorkflowUsability<I, O, E extends Throwable> {
 
     /**
      * Applies usability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowUsability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O improveUsability(I input);
+    O improveUsability(I input) throws E;
 }

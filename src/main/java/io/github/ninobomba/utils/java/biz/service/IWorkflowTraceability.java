@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowTraceability<I, O> {
+public interface IWorkflowTraceability<I, O, E extends Throwable> {
 
     /**
      * Applies traceability handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowTraceability<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O trace(I input);
+    O trace(I input) throws E;
 }

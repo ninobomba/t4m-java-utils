@@ -7,7 +7,7 @@ package io.github.ninobomba.utils.java.biz.service;
  * @param <O> output type
  */
 @FunctionalInterface
-public interface IWorkflowAuditing<I, O> {
+public interface IWorkflowAuditing<I, O, E extends Throwable> {
 
     /**
      * Applies auditing handling to the given input.
@@ -15,5 +15,5 @@ public interface IWorkflowAuditing<I, O> {
      * @param input input to process; null-handling is implementation-specific
      * @return processed output
      */
-    O audit(I input);
+    O audit(I input) throws E;
 }
