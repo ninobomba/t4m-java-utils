@@ -1,4 +1,8 @@
-package io.github.ninobomba.utils.java.biz.service.persistence;
+package io.github.ninobomba.utils.java.biz.service.persistence.inspections;
+
+import io.github.ninobomba.utils.java.biz.service.persistence.IWFPersistenceResolveEntity;
+import io.github.ninobomba.utils.java.biz.service.persistence.IWFPersistenceUpdateEntity;
+import io.github.ninobomba.utils.java.biz.service.persistence.IWFPersistenceValidateEntity;
 
 import java.util.Objects;
 import java.util.function.Consumer;

@@ -1,6 +1,6 @@
 package io.github.ninobomba.utils.java.biz.persistence;
 
-import io.github.ninobomba.utils.java.biz.service.persistence.IWFPersistenceBasicInspection;
+import io.github.ninobomba.utils.java.biz.service.persistence.inspections.IWFPersistenceBasicInspection;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.atomic.AtomicBoolean;
