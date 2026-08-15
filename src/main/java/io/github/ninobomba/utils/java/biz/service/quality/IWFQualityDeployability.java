@@ -1,0 +1,19 @@
+package io.github.ninobomba.utils.java.biz.service.quality;
+
+/**
+ * Handles workflow deployability concerns.
+ *
+ * @param <I> input type
+ * @param <O> output type
+ */
+@FunctionalInterface
+public interface IWFQualityDeployability<I, O, E extends Throwable> {
+
+    /**
+     * Applies deployability handling to the given input.
+     *
+     * @param input input to process; null-handling is implementation-specific
+     * @return processed output
+     */
+    O deploy(I input) throws E;
+}
