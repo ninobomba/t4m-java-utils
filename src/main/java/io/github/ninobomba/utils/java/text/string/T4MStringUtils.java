@@ -14,4 +14,9 @@ public final class T4MStringUtils {
         }
         return StringUtils.normalizeSpace(input);
     }
+
+    public static String defaultIfBlank(String value, String fallback) {
+        return value == null || value.isBlank() ? fallback : value;
+    }
+
 }
