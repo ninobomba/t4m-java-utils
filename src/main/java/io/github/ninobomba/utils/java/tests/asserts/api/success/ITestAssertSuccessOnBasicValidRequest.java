@@ -1,10 +1,10 @@
 package io.github.ninobomba.utils.java.tests.asserts.api.success;
 
-public interface ITestAssertSuccessOnBasicValidRequest extends
+public interface ITestAssertSuccessOnBasicValidRequest
+        extends
         ITestAssertSuccessOnRequestBasicMethods,
-        ITestAssertSuccessOnResponseBasicMethods
-{
+        ITestAssertSuccessOnResponseBasicMethods {
 
-    boolean assertSuccessOnValidRequest ( );
+    boolean assertSuccessOnValidRequest();
 
 }

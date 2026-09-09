@@ -36,6 +36,12 @@ public final class EnvUtils {
         }
     }
 
+    public static void setIfAbsent(String key, String value) {
+        if (System.getProperty(key) == null) {
+            System.setProperty(key, value);
+        }
+    }
+
     private static boolean hasText(String value) {
         return value != null && !value.isBlank();
     }
