@@ -8,7 +8,13 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.validation.FieldError;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 /**
@@ -182,6 +188,18 @@ public interface IExceptionUtils {
         return "\n" + response + "\n";
     }
 
+    static String format(String parameter, Throwable exception) {
+        Throwable rootCause = getRootCause(exception);
+        var response = String.format(
+                "%nlogFailure() - Failure for parameter: %s.%nException: %s.%nMessage: %s.%nRoot cause: %s.%nRoot cause message: %s",
+                parameter,
+                exception.getClass().getName(),
+                exception.getMessage(),
+                rootCause.getClass().getName(),
+                rootCause.getMessage()
+        );
+        return "\n" + response + "\n";
+    }
 
     static Throwable getRootCause(Throwable throwable) {
         Throwable result = throwable;
